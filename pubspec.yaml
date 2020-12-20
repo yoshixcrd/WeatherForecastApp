@@ -49,18 +49,18 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - image/chuva.png
-    - image/noite.png
-    - image/nuvem.png
-    - image/sol-com-nuvem.png
-    - image/sol-pequeno.png
-    - image/tempestade.png
-    - image/background/bg-chuvoso.png
-    - image/background/bg-ensolarado.png
-    - image/background/bg-noite.png
-    - image/background/bg-nublado.png
-    - image/background/bg-parcialmenteNublado.png
-    - image/background/bg-tempestade.png
+    - assets/image/chuva.png
+    - assets/image/noite.png
+    - assets/image/nuvem.png
+    - assets/image/sol-com-nuvem.png
+    - assets/image/sol-pequeno.png
+    - assets/image/tempestade.png
+    - assets/background/bg-chuvoso.png
+    - assets/background/bg-ensolarado.png
+    - assets/background/bg-noite.png
+    - assets/background/bg-nublado.png
+    - assets/background/bg-parcialmenteNublado.png
+    - assets/background/bg-tempestade.png
     
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -73,10 +73,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Lucida
+      fonts:
+        - asset: fonts/Lucida Sans Unicode.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

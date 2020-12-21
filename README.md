@@ -31,4 +31,4 @@ WeatherForecastApp is a weather forecast application, it uses the HG Brazil API.
 
 ## Downloads
 
-[APK](https://github.com/fernandocalheirox/PrevisaoDoTempo/releases/download/1.0/WeatherForecast.apk)
+[APK](https://github.com/fernandocalheirox/WeatherForecastApp/releases/download/2020.12.22.b/2020.12.22.WeatherForecast.apk)

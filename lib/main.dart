@@ -1,7 +1,5 @@
 import 'package:PrevisaoDoTempo/pages/home.page.dart';
-import 'package:PrevisaoDoTempo/widgets/loading.widget.dart';
 import 'package:flutter/material.dart';
-
 import 'themes/teste.theme.dart';
 
 void main() {

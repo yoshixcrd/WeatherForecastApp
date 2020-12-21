@@ -22,7 +22,6 @@
 ## Status
 The application is already working, but in the future I will implement the following updates:
 <ol>
-  <li>Format the climate description according to the condition</li>
   <li>Formats the date</li>
   <li>Get the weather forecast according to the geolocation of the cell phone</li>
 </ol>

@@ -1,7 +1,7 @@
 
 class BlocWeather {
-  String getBackground(var value) {
-    switch(value){
+  String getBackground(var condition) {
+    switch(condition){
       case "storm":
         return "assets/background/bg-tempestade.png";
         break;
@@ -42,8 +42,8 @@ class BlocWeather {
   }
   
 
-  String getImage(var value) {
-    switch(value) {
+  String getImage(var condition) {
+    switch(condition) {
       case "storm":
         return "assets/image/tempestade.png";
         break;
@@ -83,8 +83,8 @@ class BlocWeather {
     }
   }
 
-  String getDay(String value) {
-    switch(value) {
+  String getDay(String dia) {
+    switch(dia) {
       case "Dom":
         return "Domingo";
         break;

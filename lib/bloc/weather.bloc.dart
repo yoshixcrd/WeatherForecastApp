@@ -1,4 +1,6 @@
+import 'package:date_format/date_format.dart';
 class BlocWeather {
+  // Retorna o Background de acordo com a condição climatica
   String getBackground(var condition) {
     switch (condition) {
       case "storm":
@@ -39,7 +41,7 @@ class BlocWeather {
         break;
     }
   }
-
+  // Retorna a Image Central de Acordo com a condição climatica
   String getImage(var condition) {
     switch (condition) {
       case "storm":
@@ -80,7 +82,7 @@ class BlocWeather {
         break;
     }
   }
-
+  // Retorna o dia da semana
   String getDay(String dia) {
     switch (dia) {
       case "Dom":
@@ -106,7 +108,7 @@ class BlocWeather {
         break;
     }
   }
-
+  // Retorna a condição climatica formatada
   String getDescription(var condition) {
     switch (condition) {
       case "storm":
@@ -146,5 +148,52 @@ class BlocWeather {
         return "Noite Limpa";
         break;
     }
+  }
+
+  String getDataFormatada(var data) {
+    DateTime now = DateTime.now();
+    
+    var mesTemp = now.month;
+    var mes;
+    switch(mesTemp) {
+      case 1:
+        mes = "Janeiro";
+        break;
+      case 2:
+        mes = "Fevereiro";
+        break;
+      case 3:
+        mes = "Março";
+        break;
+      case 4:
+        mes = "Abril";
+        break;
+      case 5:
+        mes = "Maio";
+        break;
+      case 6:
+        mes = "Junho";
+        break;
+      case 7:
+        mes = "Julho";
+        break;
+      case 8:
+        mes = "Agosto";
+        break;
+      case 9:
+        mes = "Setembro";
+        break;
+      case 10:
+        mes = "Outubro";
+        break;
+      case 11:
+        mes = "Novembro";
+        break;
+      case 12:
+        mes = "Dezembro";
+        break;
+    }
+    
+    return formatDate(now, [dd, ' de ', mes, ' de ', yyyy]);
   }
 }

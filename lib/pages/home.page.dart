@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                                         return Center(
                                           child: Text(
                                             // Data
-                                            snapshot.data.results.date, 
+                                            bloc.getDataFormatada(snapshot.data.results.date), 
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 22,

@@ -1,3 +1,4 @@
+import 'package:PrevisaoDoTempo/bloc/weather.bloc.dart';
 import 'package:PrevisaoDoTempo/models/weatherAPI.model.dart';
 import 'package:flutter/material.dart';
 
@@ -7,65 +8,40 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
+  BlocWeather bloc = new BlocWeather();
   Future<Weather_API> weather_api;
-  var backgrounde;
+  
+  DateTime now;
+ 
+  var hora;
   var iconeCentro;
 
   @override
   void initState() {
     super.initState();
     weather_api = fetchWeatherAPI();
+  
+    
+  }
+  void didChangeDependencies() {
+    weather_api = fetchWeatherAPI();
+    super.didChangeDependencies();
+   
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       // Muda o background de acordo com a condição do clima
       body: FutureBuilder<Weather_API>(
         future: weather_api,
         builder: (context, snapshot) {
-          if(snapshot.hasData) {
-            switch(snapshot.data.results.forecast[0].condition){
-              case "storm":
-                backgrounde = "assets/background/bg-tempestade.png";
-                break;
-              case "rain":
-                backgrounde = "assets/background/bg-chuvoso.png";
-                break;
-              case "clear_day":
-                backgrounde = "assets/background/bg-ensolarado.png";
-                break;
-              case "cloud":
-                backgrounde = "assets/background/bg-nublado.png";
-                break;
-              case "cloudly_day":
-                backgrounde = "assets/background/bg-nublado.png";
-                break;
-              case "cloudly_night":
-                backgrounde = "assets/background/bg-nublado.png";
-                break;
-              case "clear_night":
-                backgrounde = "assets/background/bg-noite.png";
-                break;
-
-              case "none_day":
-                backgrounde = "assets/background/bg-ensolarado.png";
-                break;
-
-              case "none_night":
-                backgrounde = "assets/background/bg-noite.png";
-                break;
-
-            }
-          }
           return Container(
               // Background Img
               decoration: BoxDecoration(
                 image: DecorationImage(
                   // Image Background Do Clima 
-                  image: AssetImage(backgrounde),
+                  image: AssetImage(bloc.getBackground(snapshot.data.results.forecast[0].condition)),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -109,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                                     return Center(
                                       child: Text(
                                         // String dia da semana
-                                        snapshot.data.results.forecast[0].weekday,
+                                        bloc.getDay(snapshot.data.results.forecast[0].weekday),
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontFamily: "Lucida",
@@ -146,9 +122,10 @@ class _HomePageState extends State<HomePage> {
                               FutureBuilder<Weather_API>(
                                 future: weather_api,
                                 builder: (context, snapshot) {
+                                  
                                   return Center(
                                     child: Text(
-                                      // Hora
+                                      // H
                                       snapshot.data.results.time,
                                       style: TextStyle(
                                         color: Colors.white,
@@ -165,44 +142,11 @@ class _HomePageState extends State<HomePage> {
                               FutureBuilder<Weather_API>(
                                 future: weather_api,
                                 builder: (context, snapshot) {
-                                  if(snapshot.hasData) {
-                                    switch(snapshot.data.results.forecast[0].condition) {
-                                      case "storm":
-                                        iconeCentro = "assets/image/tempestade.png";
-                                        break;
-                                      case "rain":
-                                        iconeCentro = "assets/image/chuva.png";
-                                        break;
-                                      case "clear_day":
-                                        iconeCentro = "assets/image/sol-pequeno.png";
-                                        break;
-                                      case "cloud":
-                                        iconeCentro = "assets/image/sol-com-nuvem.png";
-                                        break;
-                                      case "cloudly_day":
-                                        iconeCentro = "assets/image/sol-com-nuvem.png";
-                                        break;
-                                      case "cloudly_night":
-                                        iconeCentro = "assets/image/sol-com-nuvem.png";
-                                        break;
-                                      case "clear_night":
-                                        iconeCentro = "assets/image/noite.png";
-                                        break;
-
-                                      case "none_day":
-                                        iconeCentro = "assets/image/sol-pequeno.png";
-                                        break;
-
-                                      case "none_night":
-                                        iconeCentro = "assets/image/noite.png";
-                                        break;
-                                      }
-                                    }
                                     return Center(
                                       child: Container(
                                         height: 300,
                                         child: Image(
-                                          image: AssetImage(iconeCentro),
+                                          image: AssetImage(bloc.getImage(snapshot.data.results.forecast[0].condition)),
                                         ),
                                       ),
                                     );

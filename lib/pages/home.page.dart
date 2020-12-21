@@ -195,10 +195,7 @@ class _HomePageState extends State<HomePage> {
                                           );
                                         }
                                       },
-            
                                   ),
-                                    
-                                  
                                   // Fim Icon Clima
 
                                   // Descrição do clima
@@ -208,8 +205,7 @@ class _HomePageState extends State<HomePage> {
                                       if(snapshot.hasData) {
                                         return Center(
                                           child: Text(
-                                            // Clima
-                                            snapshot.data.results.forecast[0].description.toUpperCase(),
+                                            bloc.getDescription(snapshot.data.results.forecast[0].condition).toUpperCase(),
                                             style: TextStyle(
                                               fontFamily: "Lucida",
                                               fontSize: 26,

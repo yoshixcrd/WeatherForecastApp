@@ -1,7 +1,6 @@
-
 class BlocWeather {
   String getBackground(var condition) {
-    switch(condition){
+    switch (condition) {
       case "storm":
         return "assets/background/bg-tempestade.png";
         break;
@@ -40,10 +39,9 @@ class BlocWeather {
         break;
     }
   }
-  
 
   String getImage(var condition) {
-    switch(condition) {
+    switch (condition) {
       case "storm":
         return "assets/image/tempestade.png";
         break;
@@ -84,7 +82,7 @@ class BlocWeather {
   }
 
   String getDay(String dia) {
-    switch(dia) {
+    switch (dia) {
       case "Dom":
         return "Domingo";
         break;
@@ -105,6 +103,47 @@ class BlocWeather {
         break;
       case "Sab":
         return "Sabado";
+        break;
+    }
+  }
+
+  String getDescription(var condition) {
+    switch (condition) {
+      case "storm":
+        return "Tempestade";
+        break;
+      case "Neve":
+        return "assets/image/neve.png";
+        break;
+      case "hail":
+        return "Granizo";
+        break;
+      case "rain":
+        return "Chuva";
+        break;
+      case "fog":
+        return "Neblina";
+        break;
+      case "clear_day":
+        return "Dia Limpo";
+        break;
+      case "clear_night":
+        return "Noite Limpa";
+        break;
+      case "cloud":
+        return "Nublado";
+        break;
+      case "cloudly_day":
+        return "Dia Nublado";
+        break;
+      case "cloudly_night":
+        return "Noite Nublada";
+        break;
+      case "none_day":
+        return "Dia Limpo";
+        break;
+      case "none_night":
+        return "Noite Limpa";
         break;
     }
   }

@@ -59,7 +59,7 @@ flutter:
     - assets/image/neblina.png
     - assets/image/neve.png
     - assets/image/nublado-noite.png
-    
+    - assets/background/bg-load.png
     - assets/background/bg-chuvoso.png
     - assets/background/bg-ensolarado.png
     - assets/background/bg-noite.png

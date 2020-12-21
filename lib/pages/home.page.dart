@@ -1,6 +1,5 @@
 import 'package:PrevisaoDoTempo/bloc/weather.bloc.dart';
 import 'package:PrevisaoDoTempo/models/weatherAPI.model.dart';
-import 'package:PrevisaoDoTempo/pages/loading.page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,8 +26,8 @@ class _HomePageState extends State<HomePage> {
   Future start() async {
     if(mounted) {
       setState(() { completed = true; });
-      
     }
+ 
     
   }
   @override
@@ -72,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                                       if(snapshot.hasData) {
                                         return Center(                  
                                           child: Text(
-                                            snapshot.data.results.cityName,
+                                            snapshot.data.results.cityName.toUpperCase(),
                                             style: TextStyle(
                                             fontSize: 36,
                                             color: Colors.white,
@@ -83,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                                       }
                                       else {
                                           return Container(
-                                            child: Text("teste"),
+                                            child: Text(""),
                                           );
                                         }
                                     }
@@ -104,6 +103,7 @@ class _HomePageState extends State<HomePage> {
                                             bloc.getDay(snapshot.data.results.forecast[0].weekday),
                                             style: TextStyle(
                                               color: Colors.white,
+                                              fontSize: 22,
                                               fontFamily: "Lucida",
                                             ),
                                           ),
@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                                       }
                                       else {
                                           return Container(
-                                            child: Text("teste"),
+                                            child: Text(""),
                                           );
                                         }
                                     }
@@ -131,6 +131,7 @@ class _HomePageState extends State<HomePage> {
                                             snapshot.data.results.date, 
                                             style: TextStyle(
                                               color: Colors.white,
+                                              fontSize: 22,
                                               fontFamily: "Lucida",
                                             ),
                                           ),
@@ -138,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                                       }
                                       else {
                                           return Container(
-                                            child: Text("teste"),
+                                            child: Text(""),
                                           );
                                         }
                                     }
@@ -159,13 +160,14 @@ class _HomePageState extends State<HomePage> {
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontFamily: "Lucida",
+                                              fontSize: 22,
                                             ),
                                           ),
                                         );
                                       }
                                       else {
                                           return Container(
-                                            child: Text("teste"),
+                                            child: Text(""),
                                           );
                                         }
                                     }
@@ -189,7 +191,7 @@ class _HomePageState extends State<HomePage> {
                                         }
                                         else {
                                           return Container(
-                                            child: Text("teste"),
+                                            child: Text(""),
                                           );
                                         }
                                       },
@@ -207,10 +209,11 @@ class _HomePageState extends State<HomePage> {
                                         return Center(
                                           child: Text(
                                             // Clima
-                                            snapshot.data.results.forecast[0].description,
+                                            snapshot.data.results.forecast[0].description.toUpperCase(),
                                             style: TextStyle(
                                               fontFamily: "Lucida",
                                               fontSize: 26,
+                                              letterSpacing: -0.5,
                                               color: Colors.white,
                                             ),  
                                           ),
@@ -218,7 +221,7 @@ class _HomePageState extends State<HomePage> {
                                       }
                                       else {
                                           return Container(
-                                            child: Text("teste"),
+                                            child: Text(""),
                                           );
                                         }
                                     }
@@ -254,7 +257,7 @@ class _HomePageState extends State<HomePage> {
                                       }
                                       else {
                                           return Container(
-                                            child: Text("teste"),
+                                            child: Text(""),
                                           );
                                         }
                                     }
@@ -284,7 +287,7 @@ class _HomePageState extends State<HomePage> {
                                         }
                                         else {
                                           return Container(
-                                            child: Text("teste"),
+                                            child: Text(""),
                                           );
                                         }
                                       }
@@ -296,13 +299,37 @@ class _HomePageState extends State<HomePage> {
                           ),
                         );
               else{
-                return LoadingPage();
-              }
+                return Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      // Image Background Do Clima 
+                      image: AssetImage("assets/background/bg-load.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: Scaffold(
+                    backgroundColor: Colors.transparent,
+                    body: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        
+                        Container(
+                          color: Colors.transparent,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              backgroundColor: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              } 
             }
           ),
         );
-      
-     
     }
 
  }

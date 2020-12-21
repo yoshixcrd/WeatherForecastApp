@@ -1,15 +1,25 @@
 
 
+import 'package:PrevisaoDoTempo/pages/home.page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+var teste = false;
+class LoadingPage extends StatefulWidget {
+  @override
+  _LoadingPageState createState() => _LoadingPageState();
+}
+
+class _LoadingPageState extends State<LoadingPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: HomePage(),
+    );
+  }
+}
+
 
 Widget loading(BuildContext context) {
-  return Scaffold(
-    body: Container(
-      
-      child: Center(
-        child: CircularProgressIndicator(backgroundColor: Colors.black,)
-      ),
-    ),
+  return Container(
+    child: Center(child: CircularProgressIndicator(),),
   );
 }

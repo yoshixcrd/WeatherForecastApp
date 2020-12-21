@@ -55,12 +55,21 @@ flutter:
     - assets/image/sol-com-nuvem.png
     - assets/image/sol-pequeno.png
     - assets/image/tempestade.png
+    - assets/image/granizo.png
+    - assets/image/neblina.png
+    - assets/image/neve.png
+    - assets/image/nublado-noite.png
+    
     - assets/background/bg-chuvoso.png
     - assets/background/bg-ensolarado.png
     - assets/background/bg-noite.png
     - assets/background/bg-nublado.png
-    - assets/background/bg-parcialmenteNublado.png
+    - assets/background/bg-neblina.png
     - assets/background/bg-tempestade.png
+    - assets/background/bg-granizo.png
+    - assets/background/bg-neve.png
+    - assets/background/bg-nubladoDia.png
+    - assets/background/bg-nubladoNoite.png
     
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

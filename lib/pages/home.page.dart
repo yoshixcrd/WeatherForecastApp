@@ -1,5 +1,14 @@
 import 'package:PrevisaoDoTempo/bloc/weather.bloc.dart';
 import 'package:PrevisaoDoTempo/models/weatherAPI.model.dart';
+import 'package:PrevisaoDoTempo/pages/loading.page.dart';
+import 'package:PrevisaoDoTempo/widgets/futureCityName.widget.dart';
+import 'package:PrevisaoDoTempo/widgets/futureDate.widget.dart';
+import 'package:PrevisaoDoTempo/widgets/futureDescription.widget.dart';
+import 'package:PrevisaoDoTempo/widgets/futureHour.widget.dart';
+import 'package:PrevisaoDoTempo/widgets/futureImage.widget.dart';
+import 'package:PrevisaoDoTempo/widgets/futureMaxTemp.widget.dart';
+import 'package:PrevisaoDoTempo/widgets/futureMinTemp.widget.dart';
+import 'package:PrevisaoDoTempo/widgets/futureWeakDay.widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -31,13 +40,6 @@ class _HomePageState extends State<HomePage> {
     
   }
   @override
-  void didChangeDependencies() {
-    weather_api = fetchWeatherAPI();
-    super.didChangeDependencies();
-   
-  }
-
-  @override
   Widget build(BuildContext context) {
     if(completed)
       return Scaffold(
@@ -45,7 +47,7 @@ class _HomePageState extends State<HomePage> {
         body: FutureBuilder<Weather_API>(
           future: weather_api,
           builder: (context, snapshot) {
-            if(snapshot.hasData)
+            if(snapshot.hasData) {
               return Container(
                   // Background Img
                   decoration: BoxDecoration(
@@ -56,282 +58,33 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   child: Scaffold(
-                            backgroundColor: Colors.transparent,
-                            body: SingleChildScrollView(
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 50,
-                                  ),
-                                  
-                                  // Nome da Cidade
-                                  FutureBuilder<Weather_API>(
-                                    future: weather_api,
-                                    builder: (context, snapshot) {
-                                      if(snapshot.hasData) {
-                                        return Center(                  
-                                          child: Text(
-                                            snapshot.data.results.cityName.toUpperCase(),
-                                            style: TextStyle(
-                                            fontSize: 36,
-                                            color: Colors.white,
-                                            fontFamily: "Lucida",
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      else {
-                                          return Container(
-                                            child: Text(""),
-                                          );
-                                        }
-                                    }
-                                  ),
-
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-
-                                  // Dia da semana
-                                  FutureBuilder<Weather_API>(
-                                    future: weather_api,
-                                    builder: (context, snapshot) {
-                                      if(snapshot.hasData) {
-                                        return Center(
-                                          child: Text(
-                                            // String dia da semana
-                                            bloc.getDay(snapshot.data.results.forecast[0].weekday),
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 22,
-                                              fontFamily: "Lucida",
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      else {
-                                          return Container(
-                                            child: Text(""),
-                                          );
-                                        }
-                                    }
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-
-                                  // Data
-                                  FutureBuilder<Weather_API>(
-                                    future: weather_api,
-                                    builder: (context, snapshot) {
-                                      if(snapshot.hasData) {
-                                        return Center(
-                                          child: Text(
-                                            // Data
-                                            bloc.getDataFormatada(snapshot.data.results.date), 
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 22,
-                                              fontFamily: "Lucida",
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      else {
-                                          return Container(
-                                            child: Text(""),
-                                          );
-                                        }
-                                    }
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  // Hora atual
-                                  FutureBuilder<Weather_API>(
-                                    future: weather_api,
-                                    builder: (context, snapshot) {
-                                      
-                                      if(snapshot.hasData) {
-                                        return Center(
-                                          child: Text(
-                                            // H
-                                            snapshot.data.results.time,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontFamily: "Lucida",
-                                              fontSize: 22,
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      else {
-                                          return Container(
-                                            child: Text(""),
-                                          );
-                                        }
-                                    }
-                                  ),
-                                  
-                                  // Fim Inicio
-
-                                  // Inicio Icon Clima
-                                  FutureBuilder<Weather_API>(
-                                    future: weather_api,
-                                    builder: (context, snapshot) {
-                                        if(snapshot.hasData) {
-                                          return Center(
-                                            child: Container(
-                                              height: 300,
-                                              child: Image(
-                                                image: AssetImage(bloc.getImage(snapshot.data.results.forecast[0].condition)),
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                        else {
-                                          return Container(
-                                            child: Text(""),
-                                          );
-                                        }
-                                      },
-                                  ),
-                                  // Fim Icon Clima
-
-                                  // Descrição do clima
-                                  FutureBuilder<Weather_API>(
-                                    future: weather_api,
-                                    builder: (context, snapshot) {
-                                      if(snapshot.hasData) {
-                                        return Center(
-                                          child: Text(
-                                            bloc.getDescription(snapshot.data.results.forecast[0].condition).toUpperCase(),
-                                            style: TextStyle(
-                                              fontFamily: "Lucida",
-                                              fontSize: 26,
-                                              letterSpacing: -0.5,
-                                              color: Colors.white,
-                                            ),  
-                                          ),
-                                        );
-                                      }
-                                      else {
-                                          return Container(
-                                            child: Text(""),
-                                          );
-                                        }
-                                    }
-                                  ),
-
-                                  // Fim Clima
-
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-
-                                  // Temperatura Maxima
-                                  FutureBuilder<Weather_API>(
-                                    future: weather_api,
-                                    builder: (context, snapshot) {
-                                      if(snapshot.hasData) {
-                                        return Container(
-                                          padding: EdgeInsets.only(
-                                            left: 36,
-                                            
-                                          ),
-                                          alignment: Alignment.bottomLeft,
-                                          child: Text(
-                                            // Temperatura Maxima
-                                            snapshot.data.results.forecast[0].max.toString() + "°",
-                                            style: TextStyle(
-                                              fontFamily: "Lucida",
-                                              fontSize: 100,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      else {
-                                          return Container(
-                                            child: Text(""),
-                                          );
-                                        }
-                                    }
-                                  ),
-                                  
-                                  // Temperatura Minima
-                                  if(mounted)
-                                    FutureBuilder<Weather_API>(
-                                      future: weather_api,
-                                      builder: (context, snapshot) {
-                                        if(snapshot.hasData) {
-                                          return Container(
-                                            padding: EdgeInsets.only(
-                                              left: 36,
-                                            ),
-                                            alignment: Alignment.bottomLeft,
-                                            child: Text(
-                                              // Temperatura Minima
-                                              "Minima: " + snapshot.data.results.forecast[0].min.toString() + "°",
-                                              style: TextStyle(
-                                                fontFamily: "Lucida",
-                                                fontSize: 25,
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                        else {
-                                          return Container(
-                                            child: Text(""),
-                                          );
-                                        }
-                                      }
-                                      
-                                    ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-              else{
-                return Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      // Image Background Do Clima 
-                      image: AssetImage("assets/background/bg-load.png"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: Scaffold(
                     backgroundColor: Colors.transparent,
-                    body: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        
-                        Container(
-                          color: Colors.transparent,
-                          child: Center(
-                            child: CircularProgressIndicator(
-                              backgroundColor: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
+                    body: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          SizedBox( height: 50), 
+                          futureCityName(context, weather_api),
+                          SizedBox(height: 10),
+                          futureWeakDay(context, weather_api, bloc),
+                          SizedBox(height: 5),
+                          futureDate(context, weather_api, bloc),
+                          SizedBox(height: 5),
+                          futureHour(context, weather_api),
+                          futureImage(context, weather_api, bloc),
+                          futureDescription(context, weather_api, bloc),
+                          SizedBox(height: 20),
+                          futureMaxTemp(context, weather_api),
+                          futureMinTemp(context, weather_api),
+                        ],   
+                      ),
                     ),
                   ),
-                );
+              );
+            } else{
+                return LoadingPage();
               } 
-            }
-          ),
-        );
+          }
+        ),
+      );
     }
-
- }
-  
-
-
-
-
-
+}

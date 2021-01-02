@@ -12,7 +12,7 @@ class _LoadingPageState extends State<LoadingPage> {
       decoration: BoxDecoration(
         image: DecorationImage(
           // Image Background Do Clima 
-          image: AssetImage("assets/background/bg-load.png"),
+          image: AssetImage("assets/loading/bg-load.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -23,9 +23,20 @@ class _LoadingPageState extends State<LoadingPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              color: Colors.transparent,
               child: Center(
-                child: CircularProgressIndicator(
+                child: Image(
+                  image: AssetImage("assets/loading/img-load.png"),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                right: 100,
+                top: 15,
+                left: 100,
+              ),
+              child: Center(
+                child: LinearProgressIndicator(
                   backgroundColor: Colors.white,
                 ),
               ),

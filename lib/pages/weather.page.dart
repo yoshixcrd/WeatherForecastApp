@@ -1,6 +1,4 @@
 
-
-
 import 'package:PrevisaoDoTempo/bloc/weather.bloc.dart';
 import 'package:PrevisaoDoTempo/models/weatherAPI.model.dart';
 import 'package:PrevisaoDoTempo/pages/loading.page.dart';
@@ -17,8 +15,7 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
-  BlocWeather bloc = new BlocWeather();
-
+ 
   @override
   Widget build(BuildContext context) {
     // print(widget.weather_api);
@@ -28,14 +25,13 @@ class _WeatherPageState extends State<WeatherPage> {
       body: FutureBuilder<Weather_API>(
         future: widget.weather_api,
         builder: (context, snapshot) {
-          if(!snapshot.hasData) {
-            return LoadingPage();
-          }
-          return Container(
+          if(snapshot.hasData) {
+            var weather = Weather(codition: snapshot.data.results.forecast[0].condition, day: snapshot.data.results.forecast[0].weekday);
+             return Container(
             decoration: BoxDecoration(
               image: DecorationImage(
                 // Image Background Do Clima 
-                image: AssetImage(bloc.getBackground(snapshot.data.results.forecast[0].condition)),
+                image: AssetImage(weather.background),
                 fit: BoxFit.cover,
               ),
             ),
@@ -50,20 +46,20 @@ class _WeatherPageState extends State<WeatherPage> {
                     SizedBox(height: 10),
                     
                     // Dia da semana
-                    text(label: bloc.getDay(snapshot.data.results.forecast[0].weekday), fontSize: 22.0),
+                    text(label: weather.dia, fontSize: 22.0),
                     SizedBox(height: 5),
-
+                    
                     //Data
-                    text(label: bloc.getDataFormatada(snapshot.data.results.date), fontSize: 22.0),
+                    text(label: weather.data, fontSize: 22.0),
                     // Hora
                     SizedBox(height: 5),
                     text(label: snapshot.data.results.time, fontSize: 22.0),
 
                     // Image do clima
-                    image_weather(image: bloc.getImage(snapshot.data.results.forecast[0].condition)),
+                    image_weather(image: weather.image),
                     // Descrição do clima
-                   
-                    text(label: bloc.getDescription(snapshot.data.results.forecast[0].condition).toUpperCase(), describe: true),
+                    
+                    text(label: weather.descricao.toUpperCase(), describe: true),
                     SizedBox(height: 20),
                     
                     // Temperatura Maxima
@@ -75,7 +71,12 @@ class _WeatherPageState extends State<WeatherPage> {
               ),
             ),
     );
-        }
+      
+          }
+          else {
+            return LoadingPage();
+          }
+           }
       ), 
             );
   }

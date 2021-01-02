@@ -1,14 +1,14 @@
 import "package:flutter/material.dart";
 
 Widget text({label: "", image: false, fontSize: 0.0, describe: false})  {
-  var _label = label;
+  String _label = label;
   // var _image = image;
   double _fontSize = fontSize;
 
   if(describe) {
     return Center(
       child: Text(
-        _label,
+        (_label == null) ? "Loading.." : _label,
         style: TextStyle(
           fontFamily: "Lucida",
           fontSize: 26,
@@ -21,7 +21,7 @@ Widget text({label: "", image: false, fontSize: 0.0, describe: false})  {
 
   return Center(                  
     child: Text(
-      _label,
+      (_label == null) ? "Loading.." : _label,
       style: TextStyle(
       fontSize: _fontSize,
       color: Colors.white,

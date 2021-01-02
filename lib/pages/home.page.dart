@@ -1,4 +1,4 @@
-import 'package:PrevisaoDoTempo/bloc/weather.bloc.dart';
+
 import 'package:PrevisaoDoTempo/models/weatherAPI.model.dart';
 import 'package:PrevisaoDoTempo/pages/loading.page.dart';
 import 'package:PrevisaoDoTempo/pages/weather.page.dart';
@@ -12,14 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  BlocWeather bloc = new BlocWeather();
   Future<Weather_API> weather_api;
-  bool completed = false;
-  DateTime now;
- 
-  var hora;
-  var iconeCentro;
-
   @override
   void initState() {
     super.initState();

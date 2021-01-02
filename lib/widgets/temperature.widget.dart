@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 Widget temperature({label: "", min: false, max: false})  {
   var _label = label;
-  return (max == true) ? temperatura_min(_label) : temperatura_max(_label);
+  return (max == false) ? temperatura_min(_label) : temperatura_max(_label);
 }
 
 Widget temperatura_max(String label) {

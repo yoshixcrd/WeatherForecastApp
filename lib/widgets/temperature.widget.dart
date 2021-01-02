@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 
 Widget temperature({label: "", min: false, max: false})  {

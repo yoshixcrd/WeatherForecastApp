@@ -1,4 +1,3 @@
-
 import 'package:PrevisaoDoTempo/bloc/weather.bloc.dart';
 import 'package:PrevisaoDoTempo/models/weatherAPI.model.dart';
 import 'package:PrevisaoDoTempo/pages/loading.page.dart';

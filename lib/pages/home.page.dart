@@ -1,9 +1,6 @@
-
 import 'package:PrevisaoDoTempo/models/weatherAPI.model.dart';
 import 'package:PrevisaoDoTempo/pages/loading.page.dart';
 import 'package:PrevisaoDoTempo/pages/weather.page.dart';
-
-
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

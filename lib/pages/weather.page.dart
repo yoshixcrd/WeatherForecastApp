@@ -18,10 +18,7 @@ class _WeatherPageState extends State<WeatherPage> {
  
   @override
   Widget build(BuildContext context) {
-    // print(widget.weather_api);
-
     return Scaffold(
-      // Muda o background de acordo com a condição do clima
       body: FutureBuilder<Weather_API>(
         future: widget.weather_api,
         builder: (context, snapshot) {
@@ -70,14 +67,13 @@ class _WeatherPageState extends State<WeatherPage> {
                 ),
               ),
             ),
+          );
+        }
+        else {
+          return LoadingPage();
+        }
+      }
+    ), 
     );
-      
-          }
-          else {
-            return LoadingPage();
-          }
-           }
-      ), 
-            );
   }
 }

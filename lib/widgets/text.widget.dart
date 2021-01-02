@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 
 Widget text({label: "", image: false, fontSize: 0.0, describe: false})  {
   String _label = label;
-  // var _image = image;
   double _fontSize = fontSize;
 
   if(describe) {
@@ -29,7 +28,4 @@ Widget text({label: "", image: false, fontSize: 0.0, describe: false})  {
       ),
     ),
   );
-  
-  
-
 }

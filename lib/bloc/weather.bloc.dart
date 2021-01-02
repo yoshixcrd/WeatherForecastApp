@@ -1,5 +1,6 @@
 import 'package:date_format/date_format.dart';
 class BlocWeather {
+ 
   // Retorna o Background de acordo com a condição climatica
   String getBackground(var condition) {
     switch (condition) {
@@ -83,7 +84,7 @@ class BlocWeather {
     }
   }
   // Retorna o dia da semana
-  String getDay(String dia) {
+  String getDay(var dia) {
     switch (dia) {
       case "Dom":
         return "Domingo";
@@ -103,12 +104,18 @@ class BlocWeather {
       case "Sex":
         return "Sexta";
         break;
-      case "Sab":
-        return "Sabado";
+      case "Sáb":
+        return "Sábado";
+        break;
+      case "Sat":
+        return "Sábado";
+        break;
+      default:
+        return "Week Day";
         break;
     }
   }
-  // Retorna a condição climatica formatada
+  // Retorna a condição climatica formatadax
   String getDescription(var condition) {
     switch (condition) {
       case "storm":

@@ -10,16 +10,14 @@ class LoadingPage extends StatefulWidget {
 
 class _LoadingPageState extends State<LoadingPage> {
    StreamSubscription _connectionChangeStream;
-  bool isOffline = ConnectionStatusSingleton.getInstance().hasConnection;
-  
+  var isOffline = false;
+
   @override
   void initState() {
-    
     ConnectionStatusSingleton connectionStatus = ConnectionStatusSingleton.getInstance();
     _connectionChangeStream = connectionStatus.connectionChange.listen(connectionChanged);
     super.initState();
   }
- 
   void connectionChanged(dynamic hasConnection) {
     setState(() {
         isOffline = !hasConnection;

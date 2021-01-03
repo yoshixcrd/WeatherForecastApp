@@ -166,10 +166,7 @@ class Forecast {
 // Realiza a conexão com a API do HGBrasil, e pega a previsão de tempo de São Paulo.
 Future<Weather_API> fetchWeatherAPI() async {
   final response = await http.get('https://api.hgbrasil.com/weather?key=c457ebe4&city_name=Niteroi,RJ');
-  if(response.statusCode == 200) print(Weather_API.fromJson(jsonDecode(response.body)));
-  return (response.statusCode != 200)
-      ? throw Exception('Fail')
-      : Weather_API.fromJson(jsonDecode(response.body));
+  return (response.statusCode == 200) ? Weather_API.fromJson(jsonDecode(response.body)) : throw Exception('Connection Error');
   
 }
 

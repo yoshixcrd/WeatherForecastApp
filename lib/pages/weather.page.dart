@@ -7,8 +7,9 @@ import 'package:PrevisaoDoTempo/widgets/text.widget.dart';
 import 'package:flutter/material.dart';
 
 class WeatherPage extends StatefulWidget {
+  final double height;
   Future<Weather_API> weather_api;
-  WeatherPage({Key key, this.weather_api}) : super(key: key);
+  WeatherPage({Key key, this.weather_api, this.height}) : super(key: key);
   @override
   _WeatherPageState createState() => _WeatherPageState();
 }
@@ -35,19 +36,19 @@ class _WeatherPageState extends State<WeatherPage> {
               body: SingleChildScrollView(
                 child: Column(
                   children: [
-                    SizedBox( height: 50),
+                    SizedBox( height: widget.height * .04),
                     // Nome da cidade
                     text(label: snapshot.data.results.cityName, fontSize: 36.0),
-                    SizedBox(height: 10),
+                    SizedBox(height: widget.height * 0.01),
                     
                     // Dia da semana
                     text(label: weather.dia, fontSize: 22.0),
-                    SizedBox(height: 5),
+                    SizedBox(height: widget.height * 0.001),
                     
                     //Data
                     text(label: weather.data, fontSize: 22.0),
                     // Hora
-                    SizedBox(height: 5),
+                    SizedBox(height: widget.height * 0.001),
                     text(label: snapshot.data.results.time, fontSize: 22.0),
 
                     // Image do clima
@@ -55,7 +56,7 @@ class _WeatherPageState extends State<WeatherPage> {
                     // Descrição do clima
                     
                     text(label: weather.descricao.toUpperCase(), describe: true),
-                    SizedBox(height: 20),
+                    SizedBox(height: widget.height * .04),
                     
                     // Temperatura Maxima
                     temperature(label: snapshot.data.results.forecast[0].max.toString(), max: true),

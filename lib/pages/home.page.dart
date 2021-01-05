@@ -12,7 +12,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Future<Weather_API> weather_api;
-
   @override
   void initState() {
     super.initState();
@@ -21,7 +20,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    weather_api.whenComplete(() => Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>WeatherPage(weather_api: weather_api)),(Route<dynamic> route) => false)).catchError((erro){ showDialogWidget(context);});
+    double _screenHeight = MediaQuery.of(context).size.height;
+    
+    weather_api.whenComplete(() => Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>WeatherPage(weather_api: weather_api, height: _screenHeight,)),(Route<dynamic> route) => false)).catchError((erro){ showDialogWidget(context);});
 
    return LoadingPage();
   }
